@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - CAD Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2743, #1b3a5c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated Gear Background */
+    .gear {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: url('https://img.icons8.com/ios-filled/200/ffffff/gear.png') no-repeat center/contain;
+      animation: spin 8s linear infinite;
+      opacity: 0.1;
+    }
+    .gear.small { width: 80px; height: 80px; animation-duration: 6s; }
+    .gear.big { width: 150px; height: 150px; animation-duration: 10s; }
+
+    .gear1 { top: 10%; left: 10%; }
+    .gear2 { bottom: 15%; right: 15%; animation-direction: reverse; }
+    .gear3 { top: 70%; left: 5%; }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Login Container */
+    .login-container {
+      background: white;
+      padding: 40px 35px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 360px;
+      z-index: 1;
+      position: relative;
+    }
+    .login-container h2 {
+      color: #0f2743;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .login-container p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      transition: border 0.3s ease;
+    }
+    .input-group input:focus {
+      border-color: #0f2743;
+    }
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+
+    .login-btn, .back-btn {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-bottom: 10px;
+    }
+    .login-btn {
+      background-color: #0f2743;
+      color: white;
+    }
+    .login-btn:hover {
+      background-color: #1b3a5c;
+    }
+
+    .back-btn {
+      background-color: #ddd;
+      color: #333;
+    }
+    .back-btn:hover {
+      background-color: #bbb;
+    }
+
+    .extra-links {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .extra-links a {
+      color: #0f2743;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Gear Background -->
+  <div class="gear gear1 big"></div>
+  <div class="gear gear2 small"></div>
+  <div class="gear gear3"></div>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <p>Login to your CAD Dashboard</p>
+
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Enter your email">
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Enter your password">
+      <i class="fas fa-lock"></i>
+    </div>
+
+    <button class="login-btn" id="loginBtn">Login</button>
+    <button class="back-btn" id="backBtn">⬅ Back to Dashboard</button>
+
+    <div class="extra-links">
+      <p><a href="#">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password) {
+        alert("Please enter both email and password!");
+        return;
+      }
+
+      // Simulate login success
+      localStorage.setItem("userLoggedIn", "true");
+      alert("Login Successful! Redirecting...");
+      window.location.href = "dashboard.html"; // Redirect to your main dashboard
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      window.location.href = "dashboard.html"; // Go back to dashboard without login
+    });
+  </script>
+
+</body>
+</html>
